@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
+    "oh-vue-icons": "^1.0.0-rc3",
     "vue": "^3.5.18"
   },
   "devDependencies": {
