@@ -5,7 +5,7 @@ defineProps<{ fortune: string; loading: boolean;}>()
 </script>
 
 <template>
-  <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-md min-h-[200px] flex flex-col items-center justify-center text-center">   
+  <div class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md min-h-[200px] flex flex-col items-center justify-center text-center border border-gray-200">   
     
     <div v-if="loading" class="flex flex-col items-center justify-center">
       <v-icon name="la-star-and-crescent-solid" scale="2" animation="spin" class="text-green-500"/>
