@@ -5,20 +5,22 @@ defineProps<{ fortune: string; loading: boolean;}>()
 </script>
 
 <template>
-  <div class="bg-white rounded-xl shadow-lg/20 p-6 w-full max-w-md min-h-50 flex flex-col items-center justify-center">
-    <template v-if="loading">
+  <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-md min-h-[200px] flex flex-col items-center justify-center text-center">   
+    
+    <div v-if="loading" class="flex flex-col items-center justify-center">
       <v-icon name="la-star-and-crescent-solid" scale="2" animation="spin" class="text-green-500"/>
       <p class="text-gray-500 mt-4 text-base">운세를 읽고 있습니다...</p>
-    </template>
-      <template v-if="!fortune && !loading">
-        <div class="flex flex-col items-center justify-center">
-          <v-icon name="gi-crystal-ball" scale="4" class="text-green-500 animate-slow-flash mb-7"/>
-          신비로운 수정구가 당신의 선택을 기다립니다
-        </div>
-      </template>
-      <template v-else>
-        <span class="text-green-600 font-semibold text-lg">{{ fortune }}</span>
-      </template>
+    </div>
+    
+    <div v-else-if="fortune" class="flex flex-col items-center justify-center">
+      <span class="text-green-600 font-semibold text-lg">{{ fortune }}</span>
+    </div>
+    
+    <div v-else class="flex flex-col items-center justify-center">
+      <v-icon name="gi-crystal-ball" scale="4" class="text-green-500 animate-slow-flash mb-7"/>
+      <p>신비로운 수정구가 당신의 선택을 기다립니다</p>
+    </div>
+  
   </div>
 </template>
 
