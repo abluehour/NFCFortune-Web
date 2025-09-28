@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import Footer from './components/Footer.vue'
-import FortuneCard from './components/FortuneCard.vue'
 import Bottom from './components/Bottom.vue'
 import Header from './components/Header.vue'
+import FortuneCard from './components/FortuneCard.vue'
+import { useFortune } from './composables/useFortune'
 
+
+const { fortune, isLoading, fetchFortune } = useFortune()
 
 </script>
 
@@ -15,9 +17,9 @@ import Header from './components/Header.vue'
     <div class="relative z-10 container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
       <Header/>
       <!-- 중앙 카드 (웹앱 형식) -->
-      <FortuneCard />
+      <FortuneCard :fortune="fortune"/>
       <!-- 하단 -->
-      <Bottom/>
+      <Bottom :disabled="isLoading" @pick="fetchFortune"/>
       <Footer/>
     </div>
   </div>
