@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ fortune: string; loading: boolean;}>()
+defineProps<{ fortune: string; loading: boolean; error: boolean }>()
 
 
 </script>
@@ -10,6 +10,11 @@ defineProps<{ fortune: string; loading: boolean;}>()
     <div v-if="loading" class="flex flex-col items-center justify-center">
       <v-icon name="la-star-and-crescent-solid" scale="2" animation="spin" class="text-green-500"/>
       <p class="text-gray-500 mt-4 text-base">운세를 읽고 있습니다...</p>
+    </div>
+
+    <div v-else-if="error" class="flex flex-col items-center justify-center">
+      <v-icon name="bi-exclamation-circle" scale="2" class="text-green-600 mb-3"/>
+      <p class="text-green-600 mb-5">운세를 불러오는 중 오류가 발생했습니다. <br/>새로고침 해주세요.</p>
     </div>
     
     <div v-else-if="fortune" class="flex flex-col items-center justify-center">

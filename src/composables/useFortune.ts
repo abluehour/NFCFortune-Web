@@ -4,12 +4,12 @@ export function useFortune() {
   // 앱의 모든 상태(state)를 여기서 관리.
   const fortune = ref('')
   const isLoading = ref(false)
-  const error = ref<string | null>(null)
+  const error = ref(false)
 
   // 운세를 가져오는 함수
   const fetchFortune = async () => {
     isLoading.value = true
-    error.value = null
+    error.value = false
     fortune.value = '' // 초기화
 
     try {
@@ -31,7 +31,7 @@ export function useFortune() {
       ]
       fortune.value = fortunes[Math.floor(Math.random() * fortunes.length)]
     } catch (err) {
-      error.value = '운세를 가져오는 데 실패했습니다. 다시 시도해주세요.'
+      error.value = true
     } finally {
       isLoading.value = false
     }
