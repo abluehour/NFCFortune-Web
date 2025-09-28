@@ -17,7 +17,7 @@ const emit = defineEmits<{ (e:'pick'): void }>()
             :class="{ 'inline mr-2': disabled }"
             :animation="disabled ? 'spin' : null" 
           />
-            {{ disabled ? '운세 측정 중...' : '운세 측정보기' }}
+            {{ disabled ? '운세 측정 중...' : '운세 보기' }}
         </button>
         <p class="text-gray-400 text-sm mt-10">
           <v-icon name="fa-star" scale="0.8" class="mr-5"/>

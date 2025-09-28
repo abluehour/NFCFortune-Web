@@ -1,19 +1,33 @@
 <script setup lang="ts">
-defineProps<{ fortune: string }>()
+defineProps<{ fortune: string; loading: boolean;}>()
+
+
 </script>
 
 <template>
   <div class="bg-white rounded-xl shadow-lg/20 p-6 w-full max-w-md min-h-50 flex flex-col items-center justify-center">
-    <h1 class="text-2xl font-bold text-center mb-4" v-if="!fortune">
-      🔮
-    </h1>
-    <p class="text-gray-600 text-center min-h-[48px] flex items-center justify-center">
-      <template v-if="!fortune">
-        신비로운 수정구가 당신의 선택을 기다립니다
+    <template v-if="loading">
+      <v-icon name="la-star-and-crescent-solid" scale="2" animation="spin" class="text-green-500"/>
+      <p class="text-gray-500 mt-4 text-base">운세를 읽고 있습니다...</p>
+    </template>
+      <template v-if="!fortune && !loading">
+        <div class="flex flex-col items-center justify-center">
+          <v-icon name="gi-crystal-ball" scale="4" class="text-green-500 animate-slow-flash mb-7"/>
+          신비로운 수정구가 당신의 선택을 기다립니다
+        </div>
       </template>
       <template v-else>
         <span class="text-green-600 font-semibold text-lg">{{ fortune }}</span>
       </template>
-    </p>
   </div>
 </template>
+
+<style scoped>
+@keyframes slow-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.animate-slow-flash {
+  animation: slow-flash 3s infinite;
+}
+</style>
