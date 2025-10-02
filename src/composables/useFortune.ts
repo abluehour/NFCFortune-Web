@@ -1,37 +1,42 @@
 import { ref } from 'vue'
 
 export function useFortune() {
-  // 앱의 모든 상태(state)를 여기서 관리.
   const fortune = ref('')
   const isLoading = ref(false)
-  const error = ref(false)
+  const error = ref(false) // 에러 메시지를 저장하도록 수정
 
-  // 운세를 가져오는 함수
+  // fetchFortune 함수가 '운세 주제(topic)'를 인자로 받도록 수정합니다.
   const fetchFortune = async () => {
     isLoading.value = true
-    error.value = false
-    fortune.value = '' // 초기화
+    error.value = false // 초기화
+    fortune.value = ''
 
     try {
-      // 1초 지연을 추가하여 로딩 상태를 시각적으로 확인
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // 1. 백엔드 서버의 API 주소
+      const API_URL = 'http://localhost:3000/api/fortune'
 
-      // 여기에 실제 API 호출 로직을 추가
-      // 예시: const response = await fetch('https://api.example.com/fortune')
-      // const data = await response.json()
-      // fortune.value = data.fortune
+      // 2. fetch를 사용해 백엔드에 POST 요청을 보냅니다.
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
 
-      // 임시로 고정된 운세 메시지 사용
-      const fortunes = [
-        '오늘은 좋은 일이 생길 거예요!',
-        '조금 더 노력하면 큰 성과가 있을 거예요.',
-        '새로운 사람을 만나게 될 거예요.',
-        '건강에 신경 쓰세요.',
-        '재정적으로 좋은 기회가 올 거예요.',
-      ]
-      fortune.value = fortunes[Math.floor(Math.random() * fortunes.length)]
-    } catch (err) {
-      error.value = true
+      // 3. 응답이 성공적이지 않으면 에러를 발생시킵니다.
+      if (!response.ok) {
+        throw new Error('서버에서 응답을 받지 못했습니다.')
+      }
+
+      // 4. 응답받은 JSON 데이터를 파싱합니다.
+      const data = await response.json()
+
+      // 5. 백엔드가 보내준 운세 결과를 fortune 상태에 저장합니다.
+      fortune.value = data.fortune
+      
+    } catch (err: any) {
+      console.error('Error fetching fortune:', err)
+      error.value = true;
     } finally {
       isLoading.value = false
     }

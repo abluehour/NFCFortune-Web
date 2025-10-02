@@ -8,6 +8,8 @@ import { useFortune } from './composables/useFortune'
 
 const { fortune, isLoading, fetchFortune, error } = useFortune()
 
+
+
 </script>
 
 <template>
