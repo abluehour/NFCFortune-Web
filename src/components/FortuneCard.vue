@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ fortune: string; loading: boolean; error: boolean; SlowResponse: boolean }>()
+defineProps<{ fortune: { header: string; body: string }; loading: boolean; error: boolean; SlowResponse: boolean }>()
 
 
 </script>
@@ -19,7 +19,8 @@ defineProps<{ fortune: string; loading: boolean; error: boolean; SlowResponse: b
     </div>
     
     <div v-else-if="fortune" class="flex flex-col items-center justify-center">
-      <span class="text-green-600 font-semibold text-lg">{{ fortune }}</span>
+      <p class="mb-4">{{ fortune.header }}</p>
+      <span class="text-gray-600 font-semibold text-lg">{{ fortune.body }}</span>
     </div>
     
     <div v-else class="flex flex-col items-center justify-center">

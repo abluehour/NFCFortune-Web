@@ -2,7 +2,7 @@ import { ref } from 'vue'
 
 
 export function useFortune() {
-  const fortune = ref('')
+  const fortune = ref({ header: '', body: '' })
   const isLoading = ref(false)
   const error = ref(false) // 에러 메시지를 저장하도록 수정
   const isSlowResponse = ref(false); // 느린 응답 상태를 저장하는 변수 추가
@@ -12,7 +12,7 @@ export function useFortune() {
     isLoading.value = true
     error.value = false // 초기화
     isSlowResponse.value = false; // 느린 응답 초기화
-    fortune.value = ''
+    fortune.value = { header: '', body: '' }
 
     const slowResponseTimer = setTimeout(() => {
       isSlowResponse.value = true;
@@ -39,7 +39,7 @@ export function useFortune() {
       const data = await response.json()
 
       // 5. 백엔드가 보내준 운세 결과를 fortune 상태에 저장합니다.
-      fortune.value = data.fortune
+      fortune.value = data
       
     } catch (err: any) {
       console.error('Error fetching fortune:', err)
