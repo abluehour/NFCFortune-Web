@@ -18,7 +18,7 @@ defineProps<{ fortune: { header: string; body: string }; loading: boolean; error
       <p class="text-green-600 mb-5">운세를 불러오는 중 오류가 발생했습니다. <br/>새로고침 해주세요.</p>
     </div>
     
-    <div v-else-if="fortune" class="flex flex-col items-center justify-center">
+    <div v-else-if="fortune && fortune.header" class="flex flex-col items-center justify-center">
       <p class="mb-4 text-gray-600 font-semibold text-base">{{ fortune.header }}</p>
       <span class="text-gray-500 text-base">{{ fortune.body }}</span>
     </div>

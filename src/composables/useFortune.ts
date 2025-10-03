@@ -20,7 +20,7 @@ export function useFortune() {
 
     try {
       // 1. 백엔드 서버의 API 주소
-      const API_URL = 'http://localhost:3000/api/fortune'
+      const API_URL = import.meta.env.VITE_API_URL;
 
       // 2. fetch를 사용해 백엔드에 POST 요청을 보냅니다.
       const response = await fetch(API_URL, {
