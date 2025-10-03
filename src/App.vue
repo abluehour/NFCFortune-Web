@@ -6,7 +6,7 @@ import FortuneCard from './components/FortuneCard.vue'
 import { useFortune } from './composables/useFortune'
 
 
-const { fortune, isLoading, fetchFortune, error } = useFortune()
+const { fortune, isLoading, fetchFortune, error, isSlowResponse } = useFortune()
 
 
 
@@ -19,7 +19,7 @@ const { fortune, isLoading, fetchFortune, error } = useFortune()
     <div class="relative z-10 container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
       <Header/>
       <!-- 중앙 카드 (웹앱 형식) -->
-      <FortuneCard :fortune="fortune" :loading="isLoading" :error="error"/>
+      <FortuneCard :fortune="fortune" :loading="isLoading" :error="error" :SlowResponse="isSlowResponse"/>
       <!-- 하단 -->
       <Bottom :disabled="isLoading" @pick="fetchFortune"/>
       <Footer/>

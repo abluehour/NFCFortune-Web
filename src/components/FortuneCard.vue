@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ fortune: string; loading: boolean; error: boolean }>()
+defineProps<{ fortune: string; loading: boolean; error: boolean; SlowResponse: boolean }>()
 
 
 </script>
@@ -10,6 +10,7 @@ defineProps<{ fortune: string; loading: boolean; error: boolean }>()
     <div v-if="loading" class="flex flex-col items-center justify-center">
       <v-icon name="la-star-and-crescent-solid" scale="2" animation="spin" class="text-green-500"/>
       <p class="text-gray-500 mt-4 text-base">운세를 읽고 있습니다...</p>
+      <p v-if="SlowResponse" class="text-gray-500 mt-2 text-sm">서버가 일어나는 중입니다 잠시만 기달려 주세요...</p>
     </div>
 
     <div v-else-if="error" class="flex flex-col items-center justify-center">
